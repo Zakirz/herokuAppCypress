@@ -5,14 +5,20 @@ import {
   invalidDiscontinueDataFormat,
   requiredNameField,
 } from "../pages/addComputer.page";
-import { addNew, alertMsg } from "../pages/computer.page";
+import {
+  addNew,
+  alertMsg,
+  filter,
+  selectComputerInTable,
+} from "../pages/computer.page";
+import { deleteComputer } from "../pages/editComputer.page";
 
 describe("Heroku Computer", () => {
   beforeEach(() => {
     cy.gotoComputerPage();
   });
 
-  it("Able to add new Computer", () => {
+  it("Able to add and delete Computer", () => {
     // Generate randoms inputs to create test variables
     const date = new Date();
     const computerName = `NEW_COMP ${date.toLocaleDateString()}-${date.toLocaleTimeString()}`;
@@ -30,6 +36,16 @@ describe("Heroku Computer", () => {
 
     // Verify new computer has been added
     alertMsg().should("contain.text", `${computerName} has been created`);
+
+    // filter  and select computer in table
+    filter(computerName);
+
+    // select the computer
+    selectComputerInTable(computerName);
+
+    // delete the computer and verify the alert
+    deleteComputer();
+    alertMsg().should("contain.text", " Computer has been deleted");
   });
 
   it("Able to add new Computer with incorrect details", () => {

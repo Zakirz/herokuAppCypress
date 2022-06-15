@@ -12,3 +12,12 @@ export function addNew() {
 export function alertMsg() {
   return cy.get(COMPUTER.alert);
 }
+
+export function selectComputerInTable(name) {
+  cy.get(COMPUTER.computersList)
+    .find("tr")
+    .eq(1)
+    .find("td")
+    .contains(name)
+    .click();
+}
