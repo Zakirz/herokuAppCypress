@@ -1,6 +1,6 @@
 const { ADD_COMPUTER } = require("../locators/locators");
 
-function addComputer(name, introducedDate, discontinuedDate, company) {
+export function addComputer(name, introducedDate, discontinuedDate, company) {
   cy.get(ADD_COMPUTER.computerNameInput).type(name);
   cy.get(ADD_COMPUTER.introducedDateInput).type(introducedDate);
   cy.get(ADD_COMPUTER.discontinuedDateInput).type(discontinuedDate);
@@ -8,6 +8,16 @@ function addComputer(name, introducedDate, discontinuedDate, company) {
   cy.get(ADD_COMPUTER.createComputerBtn).click();
 }
 
-function cancelAddComputer() {
+export function cancelAddComputer() {
   cy.get(ADD_COMPUTER.cancelBtn).click();
+}
+
+export function requiredNameField() {
+  return cy.get(ADD_COMPUTER.computerNameHelp);
+}
+export function invalidIntroduceDataFormat() {
+  return cy.get(ADD_COMPUTER.introducedDateHelp);
+}
+export function invalidDiscontinueDataFormat() {
+  return cy.get(ADD_COMPUTER.discontinuedDateHelp);
 }
