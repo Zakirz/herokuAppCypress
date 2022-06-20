@@ -8,6 +8,7 @@ export const COMPUTER = {
   alert: ".alert-message",
   computerNameInTable: "table.computers td a",
   computersList: "table",
+  computerTitleHeader: "#main h1",
 };
 
 export const ADD_COMPUTER = {
@@ -24,4 +25,5 @@ export const ADD_COMPUTER = {
 
 export const EDIT_COMPUTER = {
   deleteComputerBtn: 'input[value="Delete this computer"]',
+  saveComputerBtn: 'input[value="Save this computer"]',
 };

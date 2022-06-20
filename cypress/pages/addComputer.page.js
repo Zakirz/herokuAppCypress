@@ -1,15 +1,33 @@
 const { ADD_COMPUTER } = require("../locators/locators");
 
-export function addComputer(name, introducedDate, discontinuedDate, company) {
-  cy.get(ADD_COMPUTER.computerNameInput).type(name);
-  cy.get(ADD_COMPUTER.introducedDateInput).type(introducedDate);
-  cy.get(ADD_COMPUTER.discontinuedDateInput).type(discontinuedDate);
+export function fillComputerDetails(
+  name,
+  introducedDate,
+  discontinuedDate,
+  company
+) {
+  cy.get(ADD_COMPUTER.computerNameInput).clear().type(name);
+  cy.get(ADD_COMPUTER.introducedDateInput).clear().type(introducedDate);
+  cy.get(ADD_COMPUTER.discontinuedDateInput).clear().type(discontinuedDate);
   cy.get(ADD_COMPUTER.companyDropDown).select(company);
-  cy.get(ADD_COMPUTER.createComputerBtn).click();
 }
 
-export function cancelAddComputer() {
+export function addNewComputer(
+  name,
+  introducedDate,
+  discontinuedDate,
+  company
+) {
+  fillComputerDetails(name, introducedDate, discontinuedDate, company);
+  clickCreateNewComputer();
+}
+
+export function clickCancel() {
   cy.get(ADD_COMPUTER.cancelBtn).click();
+}
+
+export function clickCreateNewComputer() {
+  cy.get(ADD_COMPUTER.createComputerBtn).click();
 }
 
 export function requiredNameField() {
